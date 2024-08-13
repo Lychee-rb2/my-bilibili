@@ -1,27 +1,24 @@
 {
-  "name": "docs",
+  "name": "extension",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo --port 3001",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "build": "bun script/build.ts"
   },
   "dependencies": {
     "@repo/ui": "*",
+    "chrome-types": "^0.1.297",
     "react": "19.0.0-rc-f994737d14-20240522",
-    "react-dom": "19.0.0-rc-f994737d14-20240522",
-    "next": "15.0.0-rc.0"
+    "react-dom": "19.0.0-rc-f994737d14-20240522"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "typescript": "^5",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.0.0-rc.0"
+    "@types/bun": "^1.1.6",
+    "@types/react": "^18",
+    "@types/react-dom": "^18"
   }
 }
