@@ -21,7 +21,8 @@
     {
       "js": ["scripts/site.js"],
       "matches": [
-        "http://localhost:3000/"
+        "http://localhost:3000/",
+        "https://my-bilibili-web.vercel.app/"
       ]
     }
   ]
