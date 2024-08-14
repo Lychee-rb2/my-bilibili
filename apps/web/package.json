@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.1.5",
     "@repo/types": "*",
     "@repo/ui": "*",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/uuid": "^10.0.0",
     "autoprefixer": "^10.4.20",
+    "dayjs": "^1.11.12",
     "next": "15.0.0-rc.0",
     "postcss": "^8.4.41",
     "react": "19.0.0-rc-f994737d14-20240522",

@@ -1,4 +1,5 @@
 import { cookies } from 'next/headers'
+import { BilibiliProfile } from '@repo/types'
 
 const COOKIE_KEY = {
   BLACK_LIST: "BLACK_LIST",
@@ -35,6 +36,17 @@ export const addBlackListAuthor = (id: number) => {
   cookies().set(COOKIE_KEY.BLACK_LIST, JSON.stringify(blackList))
 }
 
-export const login = (cookie: string) => cookies().set(COOKIE_KEY.BILIBILI_COOKIE, cookie)
+export const login = async (cookie: string) => {
+  const me = await fetch("https://api.bilibili.com/x/space/v2/myinfo", {
+    headers: { cookie }
+  }).then(res => res.json()).then(res => res.data.profile as BilibiliProfile).catch(() => null)
+  if (me) {
+    cookies().set(COOKIE_KEY.BILIBILI_COOKIE, cookie)
+    return me
+  } else {
+    logout()
+    return
+  }
+}
 export const logout = () => cookies().delete(COOKIE_KEY.BILIBILI_COOKIE)
 export const getCookie = () => cookies().get(COOKIE_KEY.BILIBILI_COOKIE)?.value || ""

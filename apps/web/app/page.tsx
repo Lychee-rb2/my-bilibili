@@ -1,7 +1,5 @@
 import { Me } from '../components/Me'
 import List from '../components/List'
-
-
 export default function Home() {
   return (
     <div className="bg-white py-24">
