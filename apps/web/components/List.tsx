@@ -20,7 +20,7 @@ const fetchList = async () => {
 
 const fetchMore = async (): Promise<BilibiliVideo[]> => {
   const list = await fetchList()
-  const DISPLAY = 9
+  const DISPLAY = 24
   if (list.length < DISPLAY) {
     return Object.values([...list, ...(await fetchMore())].reduce<Record<string, BilibiliVideo>>((pre, cur) => ({
       ...pre,
