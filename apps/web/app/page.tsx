@@ -1,13 +1,14 @@
-import { cookies } from 'next/headers'
 import { Me } from '../components/Me'
-import { NoCookie } from '../components/NoCookie'
+import List from '../components/List'
+
 
 export default function Home() {
-  const cookie = cookies().get('bilibili')?.value
-  if (cookie) {
-    return <Me/>
-  }
   return (
-    <NoCookie/>
+    <div className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <Me/>
+        <List/>
+      </div>
+    </div>
   );
 }

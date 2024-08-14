@@ -1,27 +1,25 @@
 "use server"
 import { v4 } from 'uuid'
-import styles from '../app/page.module.css'
 import Link from 'next/link'
-import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { login } from '../util/cookie'
 
 export async function NoCookie() {
   const token = v4()
-  return <div className={styles.page}>
-    <main className={styles.main}>
-      <div className={styles.ctas}>
+  return <div>
+    <main>
+      <div>
         <Link
-          className={styles.primary}
           href={`https://www.bilibili.com?token=${token}`}
           target="_blank"
           rel="noopener noreferrer"
         >
           Go to bilibili
         </Link>
-        <form style={{ display: "none" }} action={(formData) => {
+        <form className="hidden" action={(formData) => {
           "use server"
           const cookie = formData.get('cookie') as string
-          cookies().set('bilibili', cookie)
+          login(cookie)
           redirect("/")
         }}>
           <label>
