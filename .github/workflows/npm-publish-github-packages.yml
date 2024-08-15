@@ -1,0 +1,39 @@
+name: 💿 Main
+on:
+  push:
+    branches:
+      - main
+
+
+
+jobs:
+  lint:
+    name: ⬣ ESLint & Typecheck
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel Previous Runs
+        uses: styfle/cancel-workflow-action@0.12.1
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4.1.6
+
+      - id: setup-bun
+        name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - id: install-bun
+        name: Bun Install
+        run: |
+          bun install
+
+      - id: typecheck
+        name: Checking Typescript Error
+        run: |
+          bun run typecheck
+
+      - id: linter
+        name: Linter check
+        run: |
+          bun run lint
