@@ -1,11 +1,8 @@
-name: 💿 Main
+name: 💿 extension
 on:
   push:
     branches:
       - main
-
-
-
 jobs:
   lint:
     name: ⬣ ESLint & Typecheck
