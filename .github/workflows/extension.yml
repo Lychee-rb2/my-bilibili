@@ -1,8 +1,9 @@
 name: 💿 extension
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*'
+
 jobs:
   lint:
     name: ⬣ ESLint & Typecheck
@@ -34,3 +35,32 @@ jobs:
         name: Linter check
         run: |
           bun run lint
+
+      - id: build-extension
+        name: Build extension
+        env:
+          SITE_DOMAIN: ${{ secrets.SITE_DOMAIN }}
+        run: |
+          cd apps/extension
+          bun run build
+
+      - id: zip-extension
+        name: Zip extension
+        run: |
+          cd apps/extension
+          bun run release
+
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ steps.get_version.outputs.VERSION }}
+          release_name: Release ${{ steps.get_version.outputs.VERSION }}
+          draft: false
+          prerelease: false
