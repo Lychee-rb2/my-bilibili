@@ -22,4 +22,6 @@ archive.pipe(output);
 
 archive.directory(inputDirPath, false);
 
-archive.finalize();
+archive.finalize().then(() => {
+  console.log(`Archive success, path: ${output}`);
+});

@@ -81,7 +81,7 @@ const main = async () => {
     background: _background,
     content_scripts: _content_scripts,
   };
-  console.log(out("manifest.json"));
   Bun.write(out("manifest.json"), JSON.stringify(manifest));
+  console.log("Build success");
 };
 main();
