@@ -3,11 +3,11 @@ import archiver from "archiver";
 import fs from "fs";
 import { resolve } from "node:path";
 
-const { build, name } = _config;
+const { build } = _config;
 
 const inputDirPath = resolve(__dirname, "..", build.out);
 
-const outputZipPath = resolve(__dirname, "..", `${name}.zip`);
+const outputZipPath = `/tmp/extension.zip`;
 
 const output = fs.createWriteStream(outputZipPath);
 const archive = archiver("zip", {
