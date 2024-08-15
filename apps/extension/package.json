@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "bun script/build.ts",
-    "release": "bun script/release.ts"
+    "release": "bun script/release.ts",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@repo/ui": "*",
