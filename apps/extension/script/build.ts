@@ -1,11 +1,10 @@
-import { mv } from './build-help'
+import { mv } from "./build-help";
 
-main()
+main();
 
 async function main() {
-  await mv('./src/manifest.json', './out/manifest.json')
-  await import('./build-popup')
-  await import('./build-script')
-  await import('./build-background')
+  await mv("./src/manifest.json", "./out/manifest.json");
+  await import("./build-popup");
+  await import("./build-script");
+  await import("./build-background");
 }
-

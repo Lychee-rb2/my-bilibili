@@ -1,9 +1,7 @@
-import zhCN from './zh-CN'
+import zhCN from "./zh-CN";
 
 export const t = (key: keyof typeof zhCN) => {
-  return zhCN[key]
-}
+  return zhCN[key];
+};
 
-export const getLocale = () => 'zh-CN'
-
-
+export const getLocale = () => "zh-CN";
