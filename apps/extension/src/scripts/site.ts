@@ -1,4 +1,8 @@
-async function main() {
+import * as process from "node:process";
+
+export const matches = () => [process.env.SITE_DOMAIN, process.env.LOCALE_TEST];
+
+export async function main() {
   chrome.runtime.onMessage.addListener((message) => {
     if (message.type === "BILIBILI_COOKIE") {
       const $token = document.querySelector("input#token") as HTMLInputElement;
@@ -25,5 +29,3 @@ async function main() {
     return false;
   });
 }
-
-main();

@@ -1,5 +1,6 @@
 {
-  "name": "extension",
+  "name": "my-bilibili",
+  "description": "my-bilibili",
   "version": "0.1.0",
   "private": true,
   "scripts": {

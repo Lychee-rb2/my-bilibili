@@ -1,4 +1,6 @@
-async function main() {
+export const matches = () => ["https://*.bilibili.com/*"];
+
+export async function main() {
   const qs = new URLSearchParams(window.location.search);
   const token = qs.get("token");
   if (token) {
@@ -8,5 +10,3 @@ async function main() {
     });
   }
 }
-
-main();
