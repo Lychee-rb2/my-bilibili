@@ -1,6 +1,7 @@
 import * as process from "node:process";
 
-export const matches = () => [process.env.SITE_DOMAIN, process.env.LOCALE_TEST];
+export const matches = () =>
+  [process.env.SITE_DOMAIN, process.env.LOCALE_TEST].map((i) => `${i}/*`);
 
 export async function main() {
   chrome.runtime.onMessage.addListener((message) => {
