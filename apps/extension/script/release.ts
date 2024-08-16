@@ -48,7 +48,7 @@ const handleResponse = async (res: Response) => {
 
 const getRelease = (): Promise<GithubRelease | null> =>
   fetch(
-    `${process.env.GITHUB_API_URL}/repos/${process.env.GITHUB_REPOSITORY}/releases/tags/${version}`,
+    `${process.env.GITHUB_API_URL}/repos/${process.env.GITHUB_REPOSITORY}/releases/tags/v${version}`,
     { headers },
   ).then(handleResponse);
 
