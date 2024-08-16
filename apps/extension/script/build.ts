@@ -23,6 +23,9 @@ const main = async () => {
       target: "browser",
       minify: true,
       naming: "[dir]/index.js",
+      define: {
+        ["process.env.SITE_DOMAIN"]: process.env.SITE_DOMAIN!,
+      },
     });
     await mv(resolve(folder, "index.html"), out("popup/index.html"));
     return {

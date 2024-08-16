@@ -1,7 +1,7 @@
 {
   "name": "my-bilibili",
   "description": "my-bilibili",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "build": "bun script/build.ts",
