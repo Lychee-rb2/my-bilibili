@@ -1,8 +1,8 @@
 name: 💿 extension
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - release
 
 jobs:
   lint:
@@ -46,32 +46,10 @@ jobs:
 
       - id: zip-extension
         name: Zip extension
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
+          GITHUB_API_URL: ${GITHUB_API_URL}
+          GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}
         run: |
           cd apps/extension
           bun run release
-
-      - name: Get the version
-        id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        with:
-          tag_name: ${{ steps.get_version.outputs.VERSION }}
-          release_name: Release ${{ steps.get_version.outputs.VERSION }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload_release_asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.PAT }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /tmp/extension.zip
-          asset_name: extension.zip
-          asset_content_type: application/zip
