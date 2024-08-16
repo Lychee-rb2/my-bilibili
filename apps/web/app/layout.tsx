@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { getLocale, t } from "../locale";
+import { getLocale, t } from "@repo/i18n";
 import { ReactNode } from "react";
 
 export const metadata: Metadata = {

@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@repo/ui": "*",
+    "@repo/i18n": "*",
     "@types/archiver": "^6.0.2",
     "chrome-types": "^0.1.297",
     "react": "19.0.0-rc-f994737d14-20240522",

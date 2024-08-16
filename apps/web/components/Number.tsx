@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { getLocale } from "../locale";
+import { getLocale } from "@repo/i18n";
 import ClientOnly from "./ClientOnly";
 
 export default function NumberFormat({

@@ -1,6 +1,6 @@
 "use server";
 import { login } from "../util/cookie";
-import { t } from "../locale";
+import { t } from "@repo/i18n";
 import { revalidateTag } from "next/cache";
 
 export const loginAction = async (

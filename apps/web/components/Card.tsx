@@ -11,7 +11,7 @@ import {
   FilmIcon,
   HandThumbUpIcon,
 } from "@heroicons/react/24/outline";
-import { t } from "../locale";
+import { t } from "@repo/i18n";
 
 export default async function Card({ video }: { video: BilibiliVideo }) {
   return (

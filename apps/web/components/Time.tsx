@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { TimeHTMLAttributes } from "react";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { getLocale } from "../locale";
+import { getLocale } from "@repo/i18n";
 import "dayjs/locale/zh-cn";
 import ClientOnly from "./ClientOnly";
 
