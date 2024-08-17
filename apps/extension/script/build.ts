@@ -3,6 +3,12 @@ import { rm } from "node:fs/promises";
 import _config from "../manifest.config";
 import { createTemp, mv } from "./build-help";
 import { ManifestJson } from "../src/manifest.type";
+
+const env = {
+  ["process.env.SITE_DOMAIN"]: process.env.SITE_DOMAIN!,
+  ["process.env.VERSION"]: `"v${_config.version}"`,
+};
+
 const main = async () => {
   const { build, action, background, content_scripts, ...config } = _config;
   const out = (path: string) => resolve(__dirname, "..", build.out, path);
@@ -12,6 +18,7 @@ const main = async () => {
     outdir: out(""),
     target: "browser",
     minify: true,
+    define: env,
   });
 
   const buildAction = async (
@@ -23,9 +30,7 @@ const main = async () => {
       target: "browser",
       minify: true,
       naming: "[dir]/index.js",
-      define: {
-        ["process.env.SITE_DOMAIN"]: process.env.SITE_DOMAIN!,
-      },
+      define: env,
     });
     await mv(resolve(folder, "index.html"), out("popup/index.html"));
     return {
@@ -42,6 +47,7 @@ const main = async () => {
       target: "browser",
       minify: true,
       naming: "[dir]/index.js",
+      define: env,
     });
     return {
       service_worker: "background/index.js",
@@ -69,6 +75,7 @@ const main = async () => {
       target: "browser",
       minify: true,
       naming: "[dir]/[name].[ext]",
+      define: env,
     });
     await rm("./.temp", { recursive: true, force: true });
     return scripts.map((obj) => ({ js: obj!.js, matches: obj!.matches }));
@@ -84,7 +91,8 @@ const main = async () => {
     background: _background,
     content_scripts: _content_scripts,
   };
-  Bun.write(out("manifest.json"), JSON.stringify(manifest));
+  await Bun.write(out("manifest.json"), JSON.stringify(manifest));
   console.log("Build success");
 };
-main();
+
+main().catch((e) => console.error(e));

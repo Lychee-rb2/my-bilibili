@@ -3,6 +3,7 @@ import packageJson from "../package.json";
 import archiver from "archiver";
 import fs from "fs";
 import { resolve as pathResolve } from "node:path";
+import { GithubRelease, GithubReleaseAsset } from "@repo/types";
 
 const { build } = _config;
 const name = "extension.zip";
@@ -25,17 +26,6 @@ const zip = () =>
     archive.directory(inputDirPath, false);
     archive.finalize().then(() => resolve(outputZipPath));
   });
-
-interface GithubReleaseAsset {
-  name: string;
-  updated_at: string;
-}
-
-interface GithubRelease {
-  upload_url: string;
-  name: string;
-  assets: GithubReleaseAsset[];
-}
 
 const handleResponse = async (res: Response) => {
   if (res.ok) {
