@@ -1,6 +1,7 @@
 import { MessageSender } from "../message";
 
 export const matches = () => ["https://*.bilibili.com/*"];
+
 const messageSender = MessageSender("BILIBILI");
 
 export async function main() {
