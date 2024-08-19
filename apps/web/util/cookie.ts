@@ -9,7 +9,7 @@ const COOKIE_KEY = {
 
 interface BlackList {
   author: number[];
-  video: number[];
+  video: string[];
 }
 
 export const getBlackList = () => {
@@ -22,7 +22,7 @@ export const getBlackList = () => {
   }
 };
 
-export const addBlackListVideo = (id: number) => {
+export const addBlackListVideo = (id: string) => {
   const blackList = getBlackList();
   blackList.video.push(id);
   blackList.video = [...new Set(blackList.video)];

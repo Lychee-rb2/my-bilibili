@@ -8,9 +8,7 @@ export const Me = async () => {
   const cookie = getCookie();
   const me = await fetch("https://api.bilibili.com/x/space/v2/myinfo", {
     headers: { cookie },
-    next: {
-      tags: ["me"],
-    },
+    next: { tags: ["me"] },
   })
     .then((res) => res.json())
     .then((res) => res.data.profile as BilibiliProfile)

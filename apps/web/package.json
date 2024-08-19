@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
-    "@repo/types": "*",
     "@repo/i18n": "*",
+    "@repo/types": "*",
     "@repo/ui": "*",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@types/uuid": "^10.0.0",

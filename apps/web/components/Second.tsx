@@ -2,12 +2,13 @@ import { HTMLAttributes } from "react";
 
 const fillZero = (number: number) => number.toString().padStart(2, "0");
 export default function Second({
-  seconds,
+  duration,
   ...props
 }: {
-  seconds: number;
+  duration: number | string;
 } & HTMLAttributes<HTMLSpanElement>) {
-  const min = Math.floor(seconds / 60);
-  const rest = seconds - min * 60;
+  if (typeof duration === "string") return <span>{duration}</span>;
+  const min = Math.floor(duration / 60);
+  const rest = duration - min * 60;
   return <span {...props}>{`${fillZero(min)}:${fillZero(rest)}`}</span>;
 }

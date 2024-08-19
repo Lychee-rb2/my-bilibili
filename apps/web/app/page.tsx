@@ -2,10 +2,12 @@ import { Me } from "../components/Me";
 import List from "../components/List";
 export default function Home() {
   return (
-    <div className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <div className="bg-white">
+      <div className="py-8 mx-auto max-w-7xl px-6 lg:px-8">
         <Me />
-        <List />
+        <div className="py-16">
+          <List />
+        </div>
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import Second from "./Second";
 import NumberFormat from "./Number";
 import Time from "./Time";
 import { addBlackListAuthor, addBlackListVideo } from "../util/cookie";
-import { BilibiliVideo } from "@repo/types";
+import { Video } from "@repo/types";
 import {
   ChatBubbleOvalLeftEllipsisIcon,
   ClockIcon,
@@ -13,17 +13,17 @@ import {
 } from "@heroicons/react/24/outline";
 import { t } from "@repo/i18n";
 
-export default async function Card({ video }: { video: BilibiliVideo }) {
+export default async function Card({ video }: { video: Video }) {
   return (
     <article className="flex flex-col items-start justify-between">
       <div className="relative w-full">
         <img
           alt=""
-          src={video.pic}
+          src={video.cover}
           referrerPolicy="no-referrer"
           className="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover"
         />
-        <Link target="_blank" referrerPolicy="no-referrer" href={video.uri}>
+        <Link target="_blank" referrerPolicy="no-referrer" href={video.url}>
           <div className="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10" />
         </Link>
       </div>
@@ -31,19 +31,21 @@ export default async function Card({ video }: { video: BilibiliVideo }) {
         <p className="flex items-center gap-x-2">
           <span className="flex items-center gap-x-1">
             <ClockIcon width={16} />
-            <Second seconds={video.duration} />
+            <Second duration={video.duration} />
           </span>
           <span className="flex items-center gap-x-1">
             <FilmIcon width={16} />
-            <NumberFormat number={video.stat.view} />
+            <NumberFormat number={video.view} />
           </span>
-          <span className="flex items-center gap-x-1">
-            <HandThumbUpIcon width={16} />
-            <NumberFormat number={video.stat.like} />
-          </span>
+          {video.like && (
+            <span className="flex items-center gap-x-1">
+              <HandThumbUpIcon width={16} />
+              <NumberFormat number={video.like} />
+            </span>
+          )}
           <span className="flex items-center gap-x-1">
             <ChatBubbleOvalLeftEllipsisIcon width={16} />
-            <NumberFormat number={video.stat.danmaku} />
+            <NumberFormat number={video.danmaku} />
           </span>
         </p>
         <p>
@@ -53,7 +55,7 @@ export default async function Card({ video }: { video: BilibiliVideo }) {
       <div className="w-full">
         <div className="mt-2 group relative">
           <h3 className="mt-2 text-lg font-semibold h-12 line-clamp-2 leading-6 text-gray-900 group-hover:text-pink-600">
-            <Link referrerPolicy="no-referrer" target="_blank" href={video.uri}>
+            <Link referrerPolicy="no-referrer" target="_blank" href={video.url}>
               <span className="absolute inset-0" />
               {video.title}
             </Link>
@@ -64,18 +66,18 @@ export default async function Card({ video }: { video: BilibiliVideo }) {
             <img
               referrerPolicy="no-referrer"
               alt=""
-              src={video.owner.face}
+              src={video.author.avatar}
               className="h-10 w-10 rounded-full bg-gray-100 ring-1 ring-inset ring-gray-900"
             />
             <div className="text-sm leading-6">
               <Link
-                href={`https://space.bilibili.com/${video.owner.mid}`}
+                href={`https://space.bilibili.com/${video.author.mid}`}
                 target="_blank"
                 referrerPolicy="no-referrer"
                 className="font-semibold text-gray-900 hover:text-pink-600"
               >
                 <div className="absolute inset-0" />
-                {video.owner.name}
+                {video.author.name}
               </Link>
             </div>
           </div>
@@ -83,7 +85,7 @@ export default async function Card({ video }: { video: BilibiliVideo }) {
             <form
               action={() => {
                 "use server";
-                addBlackListAuthor(video.owner.mid);
+                addBlackListAuthor(video.author.mid);
               }}
             >
               <button className="text-xs opacity-50 text-gray-500 hover:text-red-500">
@@ -93,7 +95,7 @@ export default async function Card({ video }: { video: BilibiliVideo }) {
             <form
               action={() => {
                 "use server";
-                addBlackListVideo(video.id);
+                addBlackListVideo(video.bvid);
               }}
             >
               <button className="text-xs opacity-50 text-gray-500 hover:text-red-500">
